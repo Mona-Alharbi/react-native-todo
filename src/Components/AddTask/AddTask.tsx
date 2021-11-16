@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import React from "react";
-import { Appbar } from "react-native-paper";
+// import { Appbar } from "react-native-paper";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { mapDispatchToProps } from "./Connect";
-import { mapStateToProps } from "./Connect";
+import { mapDispatchToProps } from "../Connect";
+import { mapStateToProps } from "../Connect";
 import LinearGradient from 'react-native-linear-gradient';
 import { Platform } from 'react-native';
 import {
@@ -16,11 +16,12 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import styles from "./styles";
 const AddTask = ({ navigation, route, user, actions, tasklist }:{navigation:any, route:any, user:{}, actions:any ,tasklist:any}) => {
   const logOut = () => {
-    actions.loggedOut(user);
+    actions.logOut(user);
     actions.deletTasks();
-    navigation.navigate("Registration");
+    navigation.navigate("Login");
   };
   const TaskSchema = Yup.object().shape({
     task: Yup.string().required("Required"),
@@ -30,14 +31,15 @@ const AddTask = ({ navigation, route, user, actions, tasklist }:{navigation:any,
     style={styles.container}
     colors={['#ffff', '#83a4d4', '#83a4d4']} 
   >
-      <Appbar.Header style={styles.AppbarHead}>
+      {/* <Appbar.Header style={styles.AppbarHead}>
         <Appbar.Content title="" />
         <Appbar.Content  title="log out" onPress={logOut}/>
-        {/* <Appbar.Action icon="power"  onPress={logOut} />  */}
-      </Appbar.Header>
+        {/* <Appbar.Action icon="power"  onPress={logOut} />  
+      </Appbar.Header> */}
+
       <View style={styles.inputTask}>
         <Text style={styles.textStyle}>Hi add a task </Text>
-        <Image style={styles.image} source={require("../assets/task.png")} />
+        <Image style={styles.image} source={require("../../assets/task.png")} />
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
@@ -83,59 +85,5 @@ const AddTask = ({ navigation, route, user, actions, tasklist }:{navigation:any,
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#E8EAED",
-  },
 
-  inputTask: {
-    justifyContent: "center",
-    marginTop: 70,
-  },
-  textStyle: {
-    fontFamily: "Cochin",
-    fontSize: 20,
-    fontWeight: "bold",
-    shadowColor: "#ffff",
-    marginLeft: 90,
-    marginBottom: 20,
-  },
-
-  input: {
-    backgroundColor: "#FFF",
-    borderRadius: 20,
-    height: 60,
-    paddingHorizontal: 15,
-    margin: 15,
-    borderColor: "#83a4d4",
-    borderWidth: 2,
-  },
-  addWrapper: {
-    width: "40%",
-    borderRadius: 10,
-    height: 45,
-    marginLeft: 110,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    padding: 10,
-    margin: 15,
-    borderColor: "white",
-    borderWidth: 2,
-  },
-
-  AppbarHead: {
-    backgroundColor: "#83a4d4",
-    marginLeft:120,
-    
-  },
-  image: {
-    marginBottom: 10,
-    width: 300,
-    height: 200,
-    justifyContent: "center",
-    marginHorizontal: 30,
-  },
-});
 export default connect(mapStateToProps, mapDispatchToProps)(AddTask);

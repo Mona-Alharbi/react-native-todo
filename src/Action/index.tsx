@@ -1,16 +1,16 @@
-const LoggedIn = 'LoggedIn';
-const LoggedOut = 'LoggedOut';
+const LogIn = 'LogIn';
+const LogOut = 'LogOut';
 const TasksList = 'TasksList';
 const AddTask = 'AddTask';
 const DeletTasks = 'DeletTasks';
 
-export const loggedIn = (value: {}) => ({
-  type: LoggedIn,
+export const logIn = (value: {}) => ({
+  type: LogIn,
   payload: value,
 });
 
-export const loggedOut = () => ({
-  type: LoggedOut,
+export const logOut = () => ({
+  type: LogOut,
 });
 
 export const addTask = (value: {}) => ({
