@@ -4,31 +4,32 @@ import Task from './Components/Task/Task';
 import Login from './Components/Login/Login';
 import TodoList from './Components/ToddoList/TodoList';
 import AddTask from './Components/AddTask/AddTask';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Button, View, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux';
-import { mapDispatchToProps } from './Components/Connect';
-import { mapStateToProps } from './Components/Connect';
+import {AnyAction, bindActionCreators, Dispatch} from 'redux';
+import {logOut,deleteTasks} from './Action';
 const Stack = createStackNavigator();
 
 const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
     const logOut = () => {
         actions.logOut(user);
-        actions.deletTasks();
+        actions.deleteTasks();
     };
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="Login"
+                initialRouteName={user.state}
                 screenOptions={{
                     headerTitleAlign: 'center',
                     headerStyle: {
-                        backgroundColor: '#0080ff',
+                        backgroundColor:'#170e2e',
+                        borderColor:'#170e2e'
                     },
                     headerTintColor: '#ffffff',
                     headerTitleStyle: {
-                        fontSize: 25,
+                        fontSize: 18,
                         fontWeight: 'bold',
                     },
                 }}>
@@ -49,17 +50,17 @@ const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
                                     { logOut() }
                                     navigation.navigate("Login");
                                 }}>
-                                <Icon name="power" size={20} color="white" />
+                                <Icon name="power" size={20} color="white" style={{marginRight: 10}}/>
                             </TouchableOpacity>,
                         headerLeft: () =>
                             <TouchableOpacity
                                 onPress={() => {
-                                
                                     navigation.navigate("AddTask");
                                 }}>
-                                <Icon name="arrow-back-outline" size={20} color="white" />
-                                <Text>Add Task</Text>
-
+                                <View style={{flexDirection: 'row', alignItems: 'center',marginLeft: 10}}>
+                                <Icon name="arrow-back-outline" size={22} color="white" style={{}} />
+                                <Text style={{color:'white'}}>Add Task</Text>
+                                </View>
                             </TouchableOpacity>,
                     })}
                 />
@@ -68,24 +69,22 @@ const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
                     component={AddTask}
                     options={({ navigation }) => ({
                         headerRight: () =>
-                            // <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                            //     <Icon name="power" size={20} color="white"  />
-                            // </TouchableOpacity>,
                             <TouchableOpacity
                                 onPress={() => {
                                     { logOut() }
                                     navigation.navigate("Login");
                                 }}>
-                                <Icon name="power" size={20} color="white" />
+                                <Icon name="power" size={21} color="white" style={{marginRight: 10}} />
                             </TouchableOpacity>,
                         headerLeft: () =>
                             <TouchableOpacity
                                 onPress={() => {
-                                    
                                     navigation.navigate("TodoList");
-                                }}>
-                                <Icon name="arrow-back-outline" size={20} color="white" />
-                                <Text>My Tasks</Text>
+                                }}> 
+                                <View style={{flexDirection: 'row', alignItems: 'center',marginLeft: 10}}>
+                                <Icon name="arrow-back-outline" size={22} color="white" style={{}} />
+                                <Text style={{color:'white'}}>My Tasks</Text>
+                                </View>
                             </TouchableOpacity>,
 
                     })}
@@ -101,6 +100,19 @@ const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
         </NavigationContainer>
     );
 }
-
+const mapStateToProps = (state: { user: {}; }) => {
+    return {
+      user: state.user,
+    };
+  };
+  
+  const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+    return {
+      actions: bindActionCreators(
+        { logOut,deleteTasks},
+        dispatch,
+      ),
+    };
+  };
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
 

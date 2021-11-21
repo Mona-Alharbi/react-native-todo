@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 const LogIn = 'LogIn';
 const LogOut = 'LogOut';
 const TasksList = 'TasksList';
 const AddTask = 'AddTask';
-const DeletTasks = 'DeletTasks';
+const DeleteTasks = 'DeleteTasks';
+const DeleteTask='DeleteTask'
+const CheckTask='CheckTask'
 
 export const logIn = (value: {}) => ({
   type: LogIn,
@@ -13,10 +17,21 @@ export const logOut = () => ({
   type: LogOut,
 });
 
-export const addTask = (value: {}) => ({
+export const addTask = (value: any) => ({
   type: AddTask,
-  task: value,
+  task:{isDone:false,value}
+ 
 });
-export const deletTasks = () => ({
-  type: DeletTasks,
+export const deleteTasks = () => ({
+  type: DeleteTasks,
+});
+export const deleteTask = (value: {}) => ({
+    type: DeleteTask,
+    task: value, 
+  
+});
+export const checkTask = (value: {}) => ({
+  type: CheckTask,
+  task: value, 
+
 });

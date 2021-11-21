@@ -1,13 +1,17 @@
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     item: {
-      backgroundColor: '#FFF',
+      backgroundColor: '#8867d599',
       padding: 10,
       borderRadius: 10,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
       marginBottom: 20,
+      width:'90%',
+      marginLeft:12,
+      height:50
+      
     },
     itemLeft: {
       flexDirection: 'row',
@@ -25,6 +29,7 @@ export default StyleSheet.create({
     },
     itemText: {
       maxWidth: '80%',
+      color:'white',
     },
   });
   

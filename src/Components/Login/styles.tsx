@@ -2,56 +2,64 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create(  {
     container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-  },
-  bottom: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
+    backgroundColor: '#170e2e',
+    
   },
   image: {
-    marginBottom: 10,
-    width: 290,
-    height: 200,
+    marginTop:210,
+    marginBottom: 20,
+    width: 90,
+    height: 90,
     justifyContent: 'center',
-    marginTop: 20,
   },
   inputView1: {
-    flex: 0.17,
+    flex: 0.23,
   },
   inputView2: {
     width: '70%',
     height: 45,
-    backgroundColor: '#FFF',
+    backgroundColor: '#8867d599',
     padding: 15,
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 3,
+    marginBottom: 1,
   },
   TextInput: {
     height: 50,
     flex: 1,
     padding: 8,
+    color: "white",
+    fontSize: 16,
+    marginTop:3,
+    marginBottom:1,
+
   },
 
   loginBtn: {
-    width: '50%',
+    width: '48%',
     borderRadius: 10,
     height: 45,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
-    backgroundColor: "white",
-    borderColor: 'red',
+    marginTop: 5,
+    color: "white",
   },
-  textStyle: {
-    fontFamily: 'Cochin',
+  textStyle_title: {
     fontSize: 20,
     fontWeight: 'bold',
     shadowColor: '#ffff',
+    marginBottom: 10,
+    color: 'white'
+  },
+    textStyle_text: {
+    width:'70%',
+    fontSize: 18,
+    shadowColor: '#ffff',
+    marginBottom: 40,
+    color: 'white',
+    textAlign: 'center',
   },
 });

@@ -1,10 +1,7 @@
 import { connect } from "react-redux";
 import React from "react";
-// import { Appbar } from "react-native-paper";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { mapDispatchToProps } from "../Connect";
-import { mapStateToProps } from "../Connect";
 import LinearGradient from 'react-native-linear-gradient';
 import { Platform } from 'react-native';
 import {
@@ -17,35 +14,29 @@ import {
   Image,
 } from "react-native";
 import styles from "./styles";
-const AddTask = ({ navigation, route, user, actions, tasklist }:{navigation:any, route:any, user:{}, actions:any ,tasklist:any}) => {
-  const logOut = () => {
-    actions.logOut(user);
-    actions.deletTasks();
-    navigation.navigate("Login");
-  };
+import {AnyAction, bindActionCreators, Dispatch} from 'redux';
+import {addTask} from '../../Action';
+const AddTask = ({ navigation, user, actions }:{navigation:any, user:{}, actions:any }) => {
+
   const TaskSchema = Yup.object().shape({
     task: Yup.string().required("Required"),
   });
   return (
-    <LinearGradient
+    <View
     style={styles.container}
-    colors={['#ffff', '#83a4d4', '#83a4d4']} 
   >
-      {/* <Appbar.Header style={styles.AppbarHead}>
-        <Appbar.Content title="" />
-        <Appbar.Content  title="log out" onPress={logOut}/>
-        {/* <Appbar.Action icon="power"  onPress={logOut} />  
-      </Appbar.Header> */}
-
       <View style={styles.inputTask}>
-        <Text style={styles.textStyle}>Hi add a task </Text>
-        <Image style={styles.image} source={require("../../assets/task.png")} />
+        <View style={{flexDirection: 'row', justifyContent:'center'}}>
+        <Text style={styles.textStyle}>What's up {"\n"} {user.name}{"\n"} </Text>
+        
+        <Image style={styles.image} source={require("../../assets/ability.png")} />
+        </View>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <Formik
             validationSchema={TaskSchema}
-            initialValues={{ task: "" }}
+            initialValues={{task: "" }}
             onSubmit={(values, { resetForm }) => {
               actions.addTask(values.task);
               resetForm({});
@@ -55,7 +46,9 @@ const AddTask = ({ navigation, route, user, actions, tasklist }:{navigation:any,
             {({ handleChange, handleSubmit, values, touched, errors }) => (
               <View>
                 <TextInput
+                  multiline
                   style={styles.input}
+                  placeholderTextColor="#a09da799"
                   onChangeText={handleChange("task")}
                   placeholder={"Write a task"}
                   value={values.task}
@@ -71,19 +64,33 @@ const AddTask = ({ navigation, route, user, actions, tasklist }:{navigation:any,
                     {errors.task}
                   </Text>
                 )}
-                <TouchableOpacity onPress={handleSubmit}>
-                  <View style={styles.addWrapper}>
-                    <Text>Add</Text>
-                  </View>
+                <TouchableOpacity  style={styles.addWrapper} onPress={handleSubmit}>
+                <LinearGradient   style={styles.addWrapper}colors={['#42a3f4', '#6663ed', '#9637fc']} >
+          <Text style={{color:'white' ,fontSize: 45}}>+</Text>
+      </LinearGradient>
+                  
                 </TouchableOpacity>
               </View>
             )}
           </Formik>
         </KeyboardAvoidingView>
       </View>
-    </LinearGradient>
+    </View>
   );
 };
+const mapStateToProps = (state: { user: {}; }) => {
+  return {
+    user: state.user,
+  };
+};
 
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+  return {
+    actions: bindActionCreators(
+      { addTask},
+      dispatch,
+    ),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTask);

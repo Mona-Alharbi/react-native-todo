@@ -2,26 +2,44 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
 import styles from './styles';
-const Task = (props: any) => {
+import { connect } from "react-redux";
+import LinearGradient from 'react-native-linear-gradient';
+import {AnyAction, bindActionCreators, Dispatch} from 'redux';
+import {deleteTask} from '../../Action';
+import {checkTask} from '../../Action';
+const Task = (props) => {
+  console.log(props)
   const [press, setPress] = useState(false);
   return (
-    <TouchableOpacity onPress={() => setPress(!press)}>
+    <TouchableOpacity onPress={() => props.actions.checkTask(props.text)}>
       <View style={styles.item}>
         <View style={styles.itemLeft}>
-          <View style={styles.square}>
-            {press && <Icon name="checkmark" size={20} color="black" />}
-          </View>
+          <LinearGradient style={styles.square} colors={['#42a3f4', '#6663ed', '#9637fc']}>
+            {props.text.isDone && <Icon name="checkmark" size={22} color="white" />}
+          </LinearGradient>
           <Text
             style={{
               maxWidth: '80%',
-              textDecorationLine: press ? 'line-through' : 'none',
+              textDecorationLine: props.text.isDone ? 'line-through' : 'none',color:'white'
             }}>
-            {props.text}
+            {props.text.value}
           </Text>
-        </View>
+        </View>    
+          <TouchableOpacity onPress={() => props.actions.deleteTask(props.text)}>
+      <Icon name="trash" size={20} color="#ca555a" />
+      </TouchableOpacity>
       </View>
+
     </TouchableOpacity>
   );
 };
 
-export default Task;
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+  return {
+    actions: bindActionCreators(
+      {deleteTask,checkTask},
+      dispatch,
+    ),
+  };
+};
+export default connect(null, mapDispatchToProps)(Task);

@@ -2,55 +2,48 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#E8EAED",
+        backgroundColor: "#170e2e",
+        
     },
-
+    
+    image: {
+        marginBottom: 10,
+        width: 100,
+        height: 100,
+        justifyContent: "center",
+        marginLeft:30
+    },
     inputTask: {
         justifyContent: "center",
-        marginTop: 70,
+        marginTop: 180,
     },
     textStyle: {
-        fontFamily: "Cochin",
-        fontSize: 20,
-        fontWeight: "bold",
+        fontSize: 30,
+        marginTop:10,
         shadowColor: "#ffff",
-        marginLeft: 90,
-        marginBottom: 20,
+        color: 'white'
     },
 
     input: {
-        backgroundColor: "#FFF",
+        backgroundColor: '#8867d599',
+        padding:20,
+        paddingTop:15,
         borderRadius: 20,
-        height: 60,
-        paddingHorizontal: 15,
+        height: 100,
         margin: 15,
-        borderColor: "#83a4d4",
-        borderWidth: 2,
+        width: '70%',
+        marginLeft: 50,
+        color:'white'
+        
     },
     addWrapper: {
-        width: "40%",
+        marginLeft: 70,
+        width: '40%',
         borderRadius: 10,
-        height: 45,
-        marginLeft: 110,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "white",
-        padding: 10,
-        margin: 15,
-        borderColor: "white",
-        borderWidth: 2,
-    },
-
-    AppbarHead: {
-        backgroundColor: "#83a4d4",
-        marginLeft: 120,
-
-    },
-    image: {
-        marginBottom: 10,
-        width: 300,
-        height: 200,
-        justifyContent: "center",
-        marginHorizontal: 30,
-    },
+        height: 55,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        color: "white",
+     },
 });

@@ -1,5 +1,4 @@
 import React from 'react';
-import LinearGradient from 'react-native-linear-gradient';
 import {
   StyleSheet,
   Text,
@@ -10,15 +9,17 @@ import {
   Image,
   Button,
 } from 'react-native';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { logIn } from '../../Action';
+import LinearGradient from 'react-native-linear-gradient';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { mapDispatchToProps } from '../Connect';
-import { mapStateToProps } from '../Connect';
 import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import styles from './styles';
-const Login = ({ navigation, route, user, actions }: { navigation: any, route: any, user: {}, actions: any }) => {
+
+const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
   const LoginSchema = Yup.object().shape({
     name: Yup.string().min(4, 'Too Short!').required('Required'),
     password: Yup.string().min(8, 'Too Short!').required('Required'),
@@ -34,7 +35,7 @@ const Login = ({ navigation, route, user, actions }: { navigation: any, route: a
     touched,
   } = useFormik({
     validationSchema: LoginSchema,
-    initialValues: { name: '', password: '' },
+    initialValues: { name: '', password: '', state: 'TodoList' },
     onSubmit: () => {
       if (Object.keys(errors).length === 0) {
         {
@@ -48,21 +49,21 @@ const Login = ({ navigation, route, user, actions }: { navigation: any, route: a
   });
 
   return (
-    <LinearGradient
+    <View
       style={styles.container}
-      colors={['#ffff', '#83a4d4', '#83a4d4']}
     >
-      <Text style={styles.textStyle}> Welcome Todos app</Text>
-      <Image style={styles.image} source={require('../../assets/task.png')} />
+      <Image style={styles.image} source={require('../../assets/daily-tasks.png')} />
+       <Text style={styles.textStyle_title}> Welcome to Todo </Text>
+       <Text style={styles.textStyle_text}>Todo help you stay organized and perform your task much faster </Text>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}></KeyboardAvoidingView>
       <View style={styles.inputView1}>
         <View style={styles.inputView2}>
-          <Icon name="person" size={15} color="gray" />
+          <Icon name="person" size={18} color="white" />
           <TextInput
             style={styles.TextInput}
             placeholder="Name"
-            placeholderTextColor="#003f5c"
+            placeholderTextColor="#a09da799"
             onChangeText={handleChange('name')}
             value={values.name}
           />
@@ -80,11 +81,11 @@ const Login = ({ navigation, route, user, actions }: { navigation: any, route: a
       </View>
       <View style={styles.inputView1}>
         <View style={styles.inputView2}>
-          <Icon name="key" size={15} color="gray" />
+          <Icon name="key" size={18} color="white" />
           <TextInput
             style={styles.TextInput}
             placeholder="Password"
-            placeholderTextColor="#003f5c"
+            placeholderTextColor="#a09da799"
             secureTextEntry={true}
             onChangeText={handleChange('password')}
             value={values.password}
@@ -101,11 +102,20 @@ const Login = ({ navigation, route, user, actions }: { navigation: any, route: a
           </Text>
         )}
       </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
-        <Text>Login</Text>
-      </TouchableOpacity>
-    </LinearGradient>
+        <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
+      <LinearGradient   style={styles.loginBtn}colors={['#42a3f4', '#6663ed', '#9637fc']} >
+          <Text style={{color:'white'}}>Login</Text>
+      </LinearGradient>
+        </TouchableOpacity>
+    </View>
   );
 };
- 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
+  return {
+    actions: bindActionCreators(
+      { logIn },
+      dispatch,
+    ),
+  };
+}
+export default connect(null, mapDispatchToProps)(Login);

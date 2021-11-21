@@ -1,6 +1,7 @@
 const initialState = {
   name: "",
   password: "",
+  state:"Login"
 };
 
 const userReducer = (state = initialState, action: { type: string; payload: {}; }) => {
