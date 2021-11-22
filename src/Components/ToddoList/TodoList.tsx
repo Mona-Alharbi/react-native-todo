@@ -11,23 +11,19 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import Task from '../Task/Task';
 import styles from './styles';
-import {AnyAction, bindActionCreators, Dispatch} from 'redux';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 const TodoList = ({ navigation, taskList }: { navigation: any, taskList: any }) => {
-  console.log("todo list page")
-  console.log(taskList)
   return (
     <View
       style={styles.container}
-     >
+    >
       <ScrollView>
         {/* Today's Tasks */}
         <View style={styles.tasksWrapper}>
-          <Text style={styles.sectionTitle}>My Task</Text>
+          <Text style={styles.sectionTitle}>My Todos</Text>
           <View style={styles.items}>
-            {/* This is where the tasks will go! */}
             {taskList.map((task: {}, index: any) => {
-              // console.log({index})
               return <Task key={index} text={task} />;
             })}
           </View>

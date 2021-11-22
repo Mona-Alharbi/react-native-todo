@@ -4,10 +4,10 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import styles from './styles';
 import { connect } from "react-redux";
 import LinearGradient from 'react-native-linear-gradient';
-import {AnyAction, bindActionCreators, Dispatch} from 'redux';
-import {deleteTask} from '../../Action';
-import {checkTask} from '../../Action';
-const Task = (props) => {
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { deleteTask } from '../../Action';
+import { checkTask } from '../../Action';
+const Task = (props: { actions: { checkTask: (arg0: any) => void; deleteTask: (arg0: any) => void; }; text: { isDone: any; value: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }; }) => {
   console.log(props)
   const [press, setPress] = useState(false);
   return (
@@ -15,19 +15,19 @@ const Task = (props) => {
       <View style={styles.item}>
         <View style={styles.itemLeft}>
           <LinearGradient style={styles.square} colors={['#42a3f4', '#6663ed', '#9637fc']}>
-            {props.text.isDone && <Icon name="checkmark" size={22} color="white" />}
+            {props.text.isDone && <Icon name="checkmark" size={27} color="white" fontWeight="bold" />}
           </LinearGradient>
           <Text
             style={{
-              maxWidth: '80%',
-              textDecorationLine: props.text.isDone ? 'line-through' : 'none',color:'white'
+
+              textDecorationLine: props.text.isDone ? 'line-through' : 'none', color: 'white', fontSize: 16,
             }}>
             {props.text.value}
           </Text>
-        </View>    
-          <TouchableOpacity onPress={() => props.actions.deleteTask(props.text)}>
-      <Icon name="trash" size={20} color="#ca555a" />
-      </TouchableOpacity>
+        </View>
+        <TouchableOpacity onPress={() => props.actions.deleteTask(props.text)}>
+          <Icon name="trash" size={20} color="#ca555a" />
+        </TouchableOpacity>
       </View>
 
     </TouchableOpacity>
@@ -37,7 +37,7 @@ const Task = (props) => {
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
-      {deleteTask,checkTask},
+      { deleteTask, checkTask },
       dispatch,
     ),
   };

@@ -21,8 +21,8 @@ import styles from './styles';
 
 const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
   const LoginSchema = Yup.object().shape({
-    name: Yup.string().min(4, 'Too Short!').required('Required'),
-    password: Yup.string().min(8, 'Too Short!').required('Required'),
+    name: Yup.string().min(4, 'Should be at least 4 characters').required('Please enter your name'),
+    password: Yup.string().min(8, 'Should be at least 8 characters').required('Please enter your password'),
   });
   const {
     handleChange,
@@ -43,7 +43,7 @@ const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
         }
         console.log(touched.password);
         resetForm({});
-        navigation.navigate('AddTask');
+        navigation.navigate('AddTodo');
       }
     },
   });
@@ -53,8 +53,8 @@ const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
       style={styles.container}
     >
       <Image style={styles.image} source={require('../../assets/daily-tasks.png')} />
-       <Text style={styles.textStyle_title}> Welcome to Todo </Text>
-       <Text style={styles.textStyle_text}>Todo help you stay organized and perform your task much faster </Text>
+      <Text style={styles.textStyle_title}> Welcome to Todo </Text>
+      <Text style={styles.textStyle_text}>Todo help you stay organized and perform your task much faster </Text>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}></KeyboardAvoidingView>
       <View style={styles.inputView1}>
@@ -71,9 +71,10 @@ const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
         {touched.name && errors.name && (
           <Text
             style={{
-              fontSize: 13,
-              color: 'red',
-              marginLeft: 35,
+              fontSize: 14,
+              color: '#ca555a',
+              marginLeft: 10,
+              marginTop: 4
             }}>
             {errors.name}
           </Text>
@@ -94,19 +95,20 @@ const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
         {touched.password && errors.password && (
           <Text
             style={{
-              fontSize: 13,
-              color: 'red',
-              marginLeft: 35,
+              fontSize: 14,
+              color: '#ca555a',
+              marginLeft: 10,
+              marginTop: 4
             }}>
             {errors.password}
           </Text>
         )}
       </View>
-        <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
-      <LinearGradient   style={styles.loginBtn}colors={['#42a3f4', '#6663ed', '#9637fc']} >
-          <Text style={{color:'white'}}>Login</Text>
-      </LinearGradient>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.loginBtn} onPress={handleSubmit}>
+        <LinearGradient style={styles.loginBtn} colors={['#42a3f4', '#6663ed', '#9637fc']} >
+          <Text style={{ color: 'white' }}>Login</Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -1,20 +1,20 @@
 import { StyleSheet } from 'react-native';
-export default StyleSheet.create(  {
-    container: {
+export default StyleSheet.create({
+  container: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#170e2e',
-    
+
   },
   image: {
-    marginTop:210,
+    marginTop: 210,
     marginBottom: 20,
     width: 90,
     height: 90,
     justifyContent: 'center',
   },
   inputView1: {
-    flex: 0.23,
+    flex: 0.24,
   },
   inputView2: {
     width: '70%',
@@ -33,8 +33,8 @@ export default StyleSheet.create(  {
     padding: 8,
     color: "white",
     fontSize: 16,
-    marginTop:3,
-    marginBottom:1,
+    marginTop: 3,
+    marginBottom: 1,
 
   },
 
@@ -54,8 +54,8 @@ export default StyleSheet.create(  {
     marginBottom: 10,
     color: 'white'
   },
-    textStyle_text: {
-    width:'70%',
+  textStyle_text: {
+    width: '70%',
     fontSize: 18,
     shadowColor: '#ffff',
     marginBottom: 40,

@@ -14,29 +14,26 @@ import {
   Image,
 } from "react-native";
 import styles from "./styles";
-import {AnyAction, bindActionCreators, Dispatch} from 'redux';
-import {addTask} from '../../Action';
-const AddTask = ({ navigation, user, actions }:{navigation:any, user:{}, actions:any }) => {
-
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
+import { addTask } from '../../Action';
+const AddTodo = ({ navigation, user, actions, taskList }: { navigation: any, user: {}, actions: any ,taskList:any}) => {
   const TaskSchema = Yup.object().shape({
     task: Yup.string().required("Required"),
   });
   return (
     <View
-    style={styles.container}
-  >
+      style={styles.container}
+    >
       <View style={styles.inputTask}>
-        <View style={{flexDirection: 'row', justifyContent:'center'}}>
-        <Text style={styles.textStyle}>What's up {"\n"} {user.name}{"\n"} </Text>
-        
         <Image style={styles.image} source={require("../../assets/ability.png")} />
-        </View>
+        <Text style={styles.textStyle1}>What's up 👋🏼 {user.name}</Text>
+        <Text style={styles.textStyle2}>Your cureent Todos: {taskList.length}</Text>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <Formik
             validationSchema={TaskSchema}
-            initialValues={{task: "" }}
+            initialValues={{ task: "" }}
             onSubmit={(values, { resetForm }) => {
               actions.addTask(values.task);
               resetForm({});
@@ -50,7 +47,7 @@ const AddTask = ({ navigation, user, actions }:{navigation:any, user:{}, actions
                   style={styles.input}
                   placeholderTextColor="#a09da799"
                   onChangeText={handleChange("task")}
-                  placeholder={"Write a task"}
+                  placeholder={"Add a todo"}
                   value={values.task}
                 />
                 {touched.task && errors.task && (
@@ -64,11 +61,11 @@ const AddTask = ({ navigation, user, actions }:{navigation:any, user:{}, actions
                     {errors.task}
                   </Text>
                 )}
-                <TouchableOpacity  style={styles.addWrapper} onPress={handleSubmit}>
-                <LinearGradient   style={styles.addWrapper}colors={['#42a3f4', '#6663ed', '#9637fc']} >
-          <Text style={{color:'white' ,fontSize: 45}}>+</Text>
-      </LinearGradient>
-                  
+                <TouchableOpacity style={styles.addWrapper} onPress={handleSubmit}>
+                  <LinearGradient style={styles.addWrapper} colors={['#42a3f4', '#6663ed', '#9637fc']} >
+                    <Text style={{ color: 'white', fontSize: 45 }}>+</Text>
+                  </LinearGradient>
+
                 </TouchableOpacity>
               </View>
             )}
@@ -78,19 +75,20 @@ const AddTask = ({ navigation, user, actions }:{navigation:any, user:{}, actions
     </View>
   );
 };
-const mapStateToProps = (state: { user: {}; }) => {
+const mapStateToProps = (state: { user: {}; task: {}; }) => {
   return {
     user: state.user,
+    taskList: state.task,
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     actions: bindActionCreators(
-      { addTask},
+      { addTask },
       dispatch,
     ),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
