@@ -19,7 +19,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
   },
   square: {
     width: 26,
@@ -31,8 +30,5 @@ export default StyleSheet.create({
     marginLeft: 4
 
   },
-  itemText: {
-    maxWidth: '80%',
-    color: 'white',
-  },
+
 });

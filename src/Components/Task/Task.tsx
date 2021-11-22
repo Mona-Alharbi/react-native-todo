@@ -8,8 +8,7 @@ import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { deleteTask } from '../../Action';
 import { checkTask } from '../../Action';
 const Task = (props: { actions: { checkTask: (arg0: any) => void; deleteTask: (arg0: any) => void; }; text: { isDone: any; value: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }; }) => {
-  console.log(props)
-  const [press, setPress] = useState(false);
+
   return (
     <TouchableOpacity onPress={() => props.actions.checkTask(props.text)}>
       <View style={styles.item}>
@@ -20,7 +19,7 @@ const Task = (props: { actions: { checkTask: (arg0: any) => void; deleteTask: (a
           <Text
             style={{
 
-              textDecorationLine: props.text.isDone ? 'line-through' : 'none', color: 'white', fontSize: 16,
+              textDecorationLine: props.text.isDone ? 'line-through' : 'none', color: 'white', fontSize: 16, maxWidth: '80%',
             }}>
             {props.text.value}
           </Text>
