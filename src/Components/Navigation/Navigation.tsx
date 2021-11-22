@@ -1,15 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Task from './Components/Task/Task';
-import Login from './Components/Login/Login';
-import TodoList from './Components/ToddoList/TodoList';
-import AddTodo from './Components/AddTodo/AddTodo';
+import Task from '../Task/Task';
+import Login from '../Login/Login';
+import TodoList from '../ToddoList/TodoList';
+import AddTodo from '../AddTodo/AddTodo';
 import React, { useState } from 'react';
+import styles from './styles';
 import { StyleSheet, Button, View, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { logOut, deleteTasks } from './Action';
+import { logOut, deleteTasks } from '../../Action';
 const Stack = createStackNavigator();
 
 const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
@@ -58,7 +59,7 @@ const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
                                 onPress={() => {
                                     navigation.navigate("AddTodo");
                                 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                                <View style={styles.arrowBack}>
                                     <Icon name="arrow-back-outline" size={22} color="white" style={{}} />
                                     <Text style={{ color: 'white' }}>Add Todo</Text>
                                 </View>
@@ -83,7 +84,7 @@ const Navigation = ({ user, actions }: { user: {}, actions: any }) => {
                                 onPress={() => {
                                     navigation.navigate("TodoList");
                                 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                                <View style={styles.arrowBack}>
                                     <Icon name="arrow-back-outline" size={22} color="white" style={{}} />
                                     <Text style={{ color: 'white' }}>My Todos</Text>
                                 </View>

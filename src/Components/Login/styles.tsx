@@ -62,4 +62,10 @@ export default StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
+  errorMassage:{
+    fontSize: 14,
+    color: '#ca555a',
+    marginLeft: 10,
+    marginTop: 4
+  }
 });

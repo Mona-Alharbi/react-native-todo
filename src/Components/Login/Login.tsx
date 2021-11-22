@@ -70,12 +70,7 @@ const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
         </View>
         {touched.name && errors.name && (
           <Text
-            style={{
-              fontSize: 14,
-              color: '#ca555a',
-              marginLeft: 10,
-              marginTop: 4
-            }}>
+            style={styles.errorMassage}>
             {errors.name}
           </Text>
         )}
@@ -94,12 +89,7 @@ const Login = ({ navigation, actions }: { navigation: any, actions: any }) => {
         </View>
         {touched.password && errors.password && (
           <Text
-            style={{
-              fontSize: 14,
-              color: '#ca555a',
-              marginLeft: 10,
-              marginTop: 4
-            }}>
+          style={styles.errorMassage}>
             {errors.password}
           </Text>
         )}

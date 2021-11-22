@@ -18,7 +18,6 @@ const Task = (props: { actions: { checkTask: (arg0: any) => void; deleteTask: (a
           </LinearGradient>
           <Text
             style={{
-
               textDecorationLine: props.text.isDone ? 'line-through' : 'none', color: 'white', fontSize: 16, maxWidth: '80%',
             }}>
             {props.text.value}

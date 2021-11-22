@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },
     inputTask: {
         justifyContent: "center",
-        marginTop: 140,
+        marginTop: 130,
         flexDirection: 'column',
 
 
@@ -25,14 +25,14 @@ export default StyleSheet.create({
         marginTop: 12,
         shadowColor: "#ffff",
         color: 'white',
-        marginLeft: 100
+        textAlign:'center'
     },
     textStyle2: {
         fontSize: 15,
         marginTop: 12,
         shadowColor: "#ffff",
         color: 'white',
-        marginLeft: 110
+        textAlign:'center'
     },
     input: {
         backgroundColor: '#8867d599',
@@ -40,12 +40,17 @@ export default StyleSheet.create({
         paddingTop: 15,
         borderRadius: 20,
         height: 100,
-        margin: 15,
+        margin: 12,
         width: '70%',
         marginLeft: 60,
         color: 'white',
         marginTop: 30
 
+    },
+    errorMassage:{
+        fontSize: 13,
+        color: "#ca555a",
+        marginLeft: 80,
     },
     addWrapper: {
         marginLeft: 75,
@@ -54,7 +59,7 @@ export default StyleSheet.create({
         height: 55,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 10,
+        marginTop: 12,
         color: "white",
     },
 });

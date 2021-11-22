@@ -18,7 +18,7 @@ import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { addTask } from '../../Action';
 const AddTodo = ({ navigation, user, actions, taskList }: { navigation: any, user: {}, actions: any ,taskList:any}) => {
   const TaskSchema = Yup.object().shape({
-    task: Yup.string().required("Required"),
+    task: Yup.string().required("Please Write Todo"),
   });
   return (
     <View
@@ -27,6 +27,7 @@ const AddTodo = ({ navigation, user, actions, taskList }: { navigation: any, use
       <View style={styles.inputTask}>
         <Image style={styles.image} source={require("../../assets/ability.png")} />
         <Text style={styles.textStyle1}>What's up 👋🏼 {user.name}</Text>
+        <Text style={styles.textStyle1}>Let's get some work done!</Text>
         <Text style={styles.textStyle2}>Your cureent Todos: {taskList.length}</Text>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -47,16 +48,12 @@ const AddTodo = ({ navigation, user, actions, taskList }: { navigation: any, use
                   style={styles.input}
                   placeholderTextColor="#a09da799"
                   onChangeText={handleChange("task")}
-                  placeholder={"Add a todo"}
+                  placeholder={"Enter new todo"}
                   value={values.task}
                 />
                 {touched.task && errors.task && (
                   <Text
-                    style={{
-                      fontSize: 13,
-                      color: "red",
-                      marginLeft: 35,
-                    }}
+                    style={styles.errorMassage}
                   >
                     {errors.task}
                   </Text>
