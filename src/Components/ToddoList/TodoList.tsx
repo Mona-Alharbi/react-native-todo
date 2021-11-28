@@ -23,7 +23,7 @@ const TodoList = ({ navigation, taskList }: { navigation: any, taskList: any }) 
         <View style={styles.tasksWrapper}>
           <Text style={styles.sectionTitle}>My Todos</Text>
           <View style={styles.items}>
-            {taskList.length == 0 &&<Text style={{color:"#a09da799", marginLeft:8}}> Your todos Empty, Please add some Todos</Text>
+            {taskList.length == 0 &&<Text style={{color:"#a09da799", marginLeft:8}}> Yourr todos Empty, Please add some Todos</Text>
            }
             {taskList.map((task: {}, index: any) => {
               return <Task key={index} text={task} />;
